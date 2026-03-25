@@ -1,0 +1,89 @@
+SOC (Security Operations Center)
+
+SOC Analyst Tiers
+| Tier | Role |
+
+| Tier 1 | Alert triage — monitor SIEM, initial response |
+| Tier 2 | Incident handling — deeper investigation |
+| Tier 3 | Threat hunting — proactive, advanced analysis |
+| Lead | Management, strategy, escalation |
+
+What SOC Monitors
+- Network traffic anomalies
+- Failed login attempts / brute force
+- Malware detections (AV/EDR)
+- Unauthorized access attempts
+- Lateral movement indicators
+
+---
+SIEM (Security Information & Event Management)
+
+Purpose: Aggregate logs → correlate events → alert on threats
+
+Examples: Splunk, Microsoft Sentinel, IBM QRadar, Elastic SIEM
+
+ Basic Splunk Query Syntax
+
+index=* sourcetype=syslog "failed password"
+index=* src_ip=192.168.1.* | stats count by dest_ip
+index=* EventCode=4625    # Failed Windows logon
+
+---
+IDS vs IPS
+
+| | IDS | IPS |
+
+| Action | Detects & alerts | Detects & blocks |
+| Placement | Passive (out of band) | Inline |
+| Risk | No blocking = attacker can proceed | False positives can block legit traffic |
+| Example | Snort (IDS mode) | Snort (IPS mode), Suricata |
+
+---
+Incident Response (IR) — NIST Framework
+
+
+1. PREPARATION    → Policies, playbooks, tools, training
+2. DETECTION      → Alerts, logs, SIEM, user reports
+3. CONTAINMENT    → Isolate affected systems (short-term + long-term)
+4. ERADICATION    → Remove malware, patch vulnerability
+5. RECOVERY       → Restore systems, monitor
+6. LESSONS LEARNED → Post-incident report, improve
+
+
+---
+Digital Forensics Basics
+
+Order of Volatility (collect in this order)
+1. CPU registers & cache
+2. RAM (memory)
+3. Network connections
+4. Running processes
+5. Disk / storage
+6. Backup / archival media
+
+Key Artifacts
+- Windows: Event Logs, Registry, Prefetch, Browser History
+- Linux: /var/log/, .bash_history, /tmp/
+
+---
+Threat Intelligence
+
+| Type | Description | Example |
+
+| Strategic | High-level business risk | Nation-state threat reports |
+| Tactical | TTPs — how attackers operate | MITRE ATT&CK |
+| Operational | Specific active campaigns | IOCs from recent breach |
+| Technical | Raw indicators | IP, hash, domain |
+
+MITRE ATT&CK Framework
+- Tactics — The WHY (e.g., Initial Access, Lateral Movement)
+- Techniques — The HOW (e.g., Phishing, Pass-the-Hash)
+- Procedures — Specific implementation
+
+---
+IOCs (Indicators of Compromise)
+- Malicious IPs / domains
+- File hashes (MD5, SHA256)
+- Registry keys
+- Unusual outbound connections
+- Anomalous user behavior
