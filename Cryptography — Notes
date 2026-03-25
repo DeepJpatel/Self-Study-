@@ -1,0 +1,78 @@
+Core Concepts
+
+CIA Triad in Crypto Context
+- Confidentiality → Encryption
+- Integrity → Hashing / Digital Signatures
+- Availability → Redundant key management
+
+Symmetric Encryption
+Same key encrypts and decrypts.
+
+| Algorithm | Key Size | Notes |
+
+| AES | 128/192/256-bit | Current standard, fast |
+| DES | 56-bit | Obsolete — broken |
+| 3DES | 168-bit | Deprecated |
+| Blowfish | Variable | Legacy |
+
+ Fast — used for bulk data encryption
+Key distribution problem — how do you share the key securely?
+
+----
+Asymmetric Encryption
+Public key encrypts → Private key decrypts (or vice versa for signatures).
+
+| Algorithm | Use Case |
+
+| RSA | Key exchange, digital signatures |
+| ECC | Efficient, mobile/IoT |
+| Diffie-Hellman | Key exchange (no actual encryption) |
+
+Solves key distribution
+Slow — used for key exchange, not bulk data
+
+---
+Hashing
+One-way transformation. Same input → same output. Cannot be reversed.
+
+| Hash | Output Length | Status |
+
+| MD5 | 128-bit / 32 hex | Broken (collisions) |
+| SHA-1 | 160-bit / 40 hex | Deprecated |
+| SHA-256 | 256-bit / 64 hex | ✅ Current standard |
+| bcrypt | Variable | ✅ Password hashing |
+
+Use cases: Password storage, file integrity, digital signatures
+
+---
+TLS Handshake (HTTPS)
+
+1. Client → Server: "Hello" (supported cipher suites)
+2. Server → Client: Certificate + Public Key
+3. Client verifies certificate against CA
+4. Client generates session key, encrypts with server's public key
+5. Server decrypts with private key — both have session key
+6. Symmetric encryption for the rest of the session
+
+---
+PKI (Public Key Infrastructure)
+
+- **CA (Certificate Authority)** — trusted issuer of certificates (DigiCert, Let's Encrypt)
+- **Certificate** — binds public key to identity
+- **CRL / OCSP** — certificate revocation checking
+
+
+Common Tools
+
+# Hash a file
+md5sum file.txt
+sha256sum file.txt
+
+# Crack hashes
+hashcat -m 0 hash.txt wordlist.txt   # MD5
+john --wordlist=rockyou.txt hash.txt
+
+# OpenSSL
+openssl genrsa -out private.pem 2048
+openssl rsa -in private.pem -pubout -out public.pem
+openssl enc -aes-256-cbc -in file.txt -out file.enc
