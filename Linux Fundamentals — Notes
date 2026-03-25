@@ -1,0 +1,78 @@
+Key Concepts
+
+- **Root** is UID 0 — the most powerful user
+- `/etc/passwd` — user info (world-readable)
+- `/etc/shadow` — password hashes (root only)
+- `/var/log/` — system logs
+- `/tmp/` — writable by all users (often used in privesc)
+- SUID bit (`chmod +s`) — run as file owner, not caller
+
+-----
+
+Key Commands
+
+ Navigation
+
+pwd           # Print working directory
+ls -la        # List all files with permissions
+cd /path      # Change directory
+find / -name "file.txt" 2>/dev/null  # Find files
+
+
+ File Operations
+
+cat file.txt         # Read file
+nano / vim file.txt  # Edit file
+cp src dst           # Copy
+mv src dst           # Move/rename
+rm -rf dir/          # Delete recursively
+
+Permissions
+
+chmod 777 file    # rwxrwxrwx
+chmod 644 file    # rw-r--r--
+chown user:group file
+
+Permission breakdown:
+- r = 4, w = 2, x = 1
+- Owner | Group | Others
+
+User Management
+
+whoami
+id
+sudo su
+adduser username
+passwd username
+cat /etc/passwd
+cat /etc/shadow    # Hashed passwords
+
+
+Process Management
+
+ps aux            # All running processes
+top / htop        # Real-time process viewer
+kill -9 PID       # Force kill process
+
+ Networking
+
+ifconfig / ip a   # Network interfaces
+netstat -tulpn    # Open ports
+ss -tulpn         # Modern netstat
+ping 8.8.8.8
+
+Package Management (Debian/Ubuntu)
+
+apt update && apt upgrade
+apt install <package>
+apt remove <package>
+dpkg -l           # List installed packages
+
+
+Useful Shortcuts
+
+Ctrl+C    # Kill current process
+Ctrl+Z    # Suspend process
+Ctrl+L    # Clear terminal
+!!        # Repeat last command
+sudo !!   # Repeat last command as sudo
