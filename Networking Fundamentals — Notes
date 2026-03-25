@@ -1,0 +1,62 @@
+ OSI Model 
+
+| Layer | Name | Protocol Examples | PDU |
+
+| 7 | Application | HTTP, FTP, DNS, SMTP | Data |
+| 6 | Presentation | SSL/TLS, JPEG, ASCII | Data |
+| 5 | Session | NetBIOS, RPC | Data |
+| 4 | Transport | TCP, UDP | Segment |
+| 3 | Network | IP, ICMP, ARP | Packet |
+| 2 | Data Link | Ethernet, MAC, ARP | Frame |
+| 1 | Physical | Cables, Wi-Fi, Hubs | Bits |
+
+TCP vs UDP
+
+| TCP | UDP |
+
+| Connection-oriented | Connectionless |
+| 3-way handshake (SYN, SYN-ACK, ACK) | Fire and forget |
+| Reliable, ordered | Fast, no guarantee |
+| HTTP, FTP, SSH | DNS, DHCP, VoIP |
+
+ Common Ports
+
+| Port | Protocol |
+
+| 21 | FTP |
+| 22 | SSH |
+| 23 | Telnet |
+| 25 | SMTP |
+| 53 | DNS |
+| 80 | HTTP |
+| 443 | HTTPS |
+| 445 | SMB |
+| 3306 | MySQL |
+| 3389 | RDP |
+
+Subnetting
+
+- CIDR /24 = 255.255.255.0 → 254 usable hosts
+- CIDR /25 = 255.255.255.128 → 126 usable hosts
+- CIDR /16 = 255.255.0.0 → 65,534 usable hosts
+
+Private ranges (RFC 1918):
+- 10.0.0.0/8
+- 172.16.0.0/12
+- 192.168.0.0/16
+
+DNS Resolution Flow
+
+1. Browser cache
+2. OS cache (/etc/hosts)
+3. Recursive resolver (ISP)
+4. Root nameserver
+5. TLD nameserver (.com, .org)
+6. Authoritative nameserver → returns IP
+
+ARP (Address Resolution Protocol)
+
+- Maps IP → MAC address
+- Broadcast: "Who has 192.168.1.1?"
+- Response: "I have it, my MAC is AA:BB:CC:DD:EE:FF"
+- ARP Poisoning = MITM attack via forged ARP replies
