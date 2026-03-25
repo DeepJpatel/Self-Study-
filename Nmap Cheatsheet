@@ -1,0 +1,53 @@
+ Basic Scans
+
+nmap <target>                    Default scan (top 1000 ports)
+nmap -p- <target>                 All 65535 ports
+nmap -p 80,443,22 <target>        Specific ports
+nmap -sV <target>                 Service version detection
+nmap -O <target>                  OS detection
+nmap -A <target>                 Aggressive: OS, version, scripts, traceroute
+
+
+Scan Types
+
+
+nmap -sS <target>   SYN (stealth) scan — default with root
+nmap -sT <target>    TCP connect scan — no root required
+nmap -sU <target>    UDP scan
+nmap -sN <target>    Null scan
+nmap -sF <target>   FIN scan
+nmap -sX <target>    Xmas scan
+```
+
+Speed / Timing
+
+nmap -T0    Paranoid (slowest)
+nmap -T3   Normal (default)
+nmap -T4   Aggressive
+nmap -T5   Insane (fastest, noisy)
+
+
+Output Formats
+
+nmap -oN output.txt     Normal text
+nmap -oX output.xml     XML
+nmap -oG output.gnmap   Grepable
+nmap -oA output         All formats
+
+
+NSE Scripts
+
+nmap --script=default <target>
+nmap --script=vuln <target>
+nmap --script=http-enum <target>
+nmap --script=smb-vuln* <target>
+
+ Useful Combos
+
+
+Full recon
+nmap -A -T4 -p- -oN full_scan.txt <target>
+
+Quick port discovery then deep scan
+nmap -p- --min-rate 5000 <target>
+nmap -A -p <open_ports> <target>
